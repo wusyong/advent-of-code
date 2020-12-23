@@ -12,7 +12,6 @@ data Rule
   | Then [Int]
   | Constant Char
 
--- I know this generic `a` doesn't make much sense. I just wanted the Monoid stuff.
 newtype RuleParser a = RuleParser (String -> Maybe String)
 
 instance Semigroup (RuleParser a) where

@@ -21,7 +21,7 @@ main = do
     let tileNeighbours = M.mapWithKey (\tileId _ -> matchAllEdges tiles tileId) tiles
     
     let cornerNeighbours = M.filter ((==2) . neighbourCount) tileNeighbours
-    print $ product $ M.keys cornerNeighbours -- 15006909892229
+    print $ product $ M.keys cornerNeighbours
 
     let Just (startingCorner, rotation) = M.lookupGT (-1) $ M.map rotateCornerToTopLeft cornerNeighbours
     let leftEdge = matchToBottom tiles (Just (startingCorner, rotation))
@@ -29,7 +29,7 @@ main = do
     let assembledImage = assembleImage tiles tilePlacements
     let monsterCount = sum $ map (findMonsters . snd) (allTransforms assembledImage)
 
-    print $ hashtagCount assembledImage - monsterCount * hashtagCount monster -- 2190
+    print $ hashtagCount assembledImage - monsterCount * hashtagCount monster
 
 parse :: ReadP c -> String -> c
 parse parser = fst . head . readP_to_S parser
